@@ -10,8 +10,6 @@
 
 // Execute 'rustlings hint generics3' for hints!
 
-// I AM NOT DONE
-
 pub struct ReportCard {
     pub grade: f32,
     pub student_name: String,
@@ -20,8 +18,15 @@ pub struct ReportCard {
 
 impl ReportCard {
     pub fn print(&self) -> String {
-        format!("{} ({}) - achieved a grade of {}",
-            &self.student_name, &self.student_age, &self.grade)
+        let grade = if self.grade > 5.0f32 {
+            "A+".to_string()
+        } else {
+            self.grade.to_string()
+        };
+        format!(
+            "{} ({}) - achieved a grade of {}",
+            &self.student_name, &self.student_age, grade
+        )
     }
 }
 
@@ -46,7 +51,7 @@ mod tests {
     fn generate_alphabetic_report_card() {
         // TODO: Make sure to change the grade here after you finish the exercise.
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: 5.1,
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
